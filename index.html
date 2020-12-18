@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>Magnus Digital Indonesia</title>
+    <base href="/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="icon" type="image/x-icon" href="favicon.ico" />
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+      integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+      crossorigin="anonymous"
+    />
+    <style>
+      .btn-daftar {
+        cursor: pointer;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="col-md-12">
+      <div class="col-md-5 m-auto mt-5">
+        <h2 class="text-center">Form Register</h2>
+        <form class="mt-5">
+          <div class="form-group row">
+            <label for="staticEmail2" class="col-sm-3 col-form-label"
+              >Nama</label
+            >
+            <div class="col-sm-9">
+              <input class="form-control" placeholder="Nama" id="nama" />
+            </div>
+          </div>
+          <div class="form-group row">
+            <label for="staticEmail2" class="col-sm-3 col-form-label"
+              >Jenis Kelamin</label
+            >
+            <div class="col-sm-9">
+              <div class="form-check">
+                <input
+                  class="form-check-input"
+                  type="radio"
+                  name="JenisKelamin"
+                  id="JenisKelamin"
+                  value="perempuan"
+                />
+                <label class="form-check-label" for="JenisKelamin">
+                  Perempuan
+                </label>
+              </div>
+              <div class="form-check">
+                <input
+                  class="form-check-input"
+                  type="radio"
+                  name="JenisKelamin"
+                  id="JenisKelamin"
+                  value="laki-laki"
+                />
+                <label class="form-check-label" for="JenisKelamin">
+                  Laki - Laki
+                </label>
+              </div>
+            </div>
+          </div>
+          <div class="form-group row">
+            <label for="staticEmail2" class="col-sm-3 col-form-label"
+              >Hobi</label
+            >
+            <div class="col-sm-9 p-0">
+              <div class="form-check">
+                <input
+                  class="messageCheckbox"
+                  type="checkbox"
+                  name="hobi"
+                  id="hobi"
+                  value="voly"
+                />
+                <label class="form-check-label" for="hobi"> Voly </label>
+              </div>
+              <div class="form-check">
+                <input
+                  class="messageCheckbox"
+                  type="checkbox"
+                  name="hobi"
+                  id="hobi"
+                  value="basket"
+                />
+                <label class="form-check-label" for="hobi"> Basket </label>
+              </div>
+              <div class="form-check">
+                <input
+                  class="messageCheckbox"
+                  type="checkbox"
+                  name="hobi"
+                  id="hobi"
+                  value="tenis"
+                />
+                <label class="form-check-label" for="hobi"> Tenis </label>
+              </div>
+            </div>
+          </div>
+          <div class="form-group row">
+            <label for="email" class="col-sm-3 col-form-label"
+              >Email</label
+            >
+            <div class="col-sm-9">
+              <input class="form-control" placeholder="Email" id="email" />
+            </div>
+          </div>
+          <div class="form-group row">
+            <label for="telp" class="col-sm-3 col-form-label"
+              >Telepon</label
+            >
+            <div class="col-sm-9">
+              <input class="form-control" placeholder="Telepon" id="telp" />
+            </div>
+          </div>
+          <div class="form-group row">
+            <label for="username" class="col-sm-3 col-form-label"
+              >Username</label
+            >
+            <div class="col-sm-9">
+              <input
+                class="form-control"
+                placeholder="Username"
+                id="username"
+              />
+            </div>
+          </div>
+          <div class="form-group row">
+            <label for="password" class="col-sm-3 col-form-label"
+              >Password</label
+            >
+            <div class="col-sm-9">
+              <input
+                type="password"
+                class="form-control"
+                id="password"
+                placeholder="Password"
+              />
+            </div>
+          </div>
+          <div class="m-auto">
+            <input
+              type="button"
+              onclick="daftar(nama.value, hobi.value, email.value, telp.value, username.value, password.value)"
+              value="Daftar"
+              class="btn btn-primary mb-2"
+            />
+            <input type="reset" value="Reset" class="btn btn-danger mb-2" />
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <script>
+      function daftar(nama, hobi, email, phone, username, password) {
+        var jenis_kelamin;
+        var hobi;
+        var radios = document.getElementsByName("JenisKelamin");
+        for (var i = 0, length = radios.length; i < length; i++) {
+          if (radios[i].checked) {
+            jenis_kelamin = radios[i].value;
+            break;
+          }
+        }
+        var checkboxHobi = document.getElementsByName("hobi");
+        var hobi = "";
+        for (var i = 0, n = checkboxHobi.length; i < n; i++) {
+          if (checkboxHobi[i].checked) {
+            hobi += "," + checkboxHobi[i].value;
+          }
+        }
+        if (hobi) hobi = hobi.substring(1);
+        var $_name = /^[A-Z]/.test(nama);
+        var $_email = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+        var $_phone =  /^[0-9]+$/.test(
+          phone
+        );
+        var $_username = /^.{1,10}$/.test(username);
+        var $_password = /^.{7,100}$/.test(password);
+
+        if (!$_name) alert("Huruf pertama nama harus kapital");
+        if (jenis_kelamin == undefined) alert("Jenis kelamin belum di pilih")
+        if (hobi == "") alert("Hobi belum di pilih");
+        if (!$_email) alert("Format email belum benar");
+        if (!$_phone) alert("Telepon hanya angka");
+        if (!$_username) alert("Username maksimal 10 karakter");
+        if (!$_password) alert("Password minimal 7 karakter");
+        if($_name && jenis_kelamin != undefined && hobi != "" && $_email && $_phone && $_username && $_password) alert('Selamat anda sukses melakukan registrasi')
+      }
+    </script>
+    <script
+      src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+      integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+      integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+      integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+      crossorigin="anonymous"
+    ></script>
+  </body>
+</html>
